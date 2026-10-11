@@ -1,0 +1,13 @@
+services:
+  webhook:
+    build: .
+    container_name: pebble-webhook-bridge
+    ports:
+      - "8787:8787"
+    env_file: .env
+    environment:
+      PORT: "8787"
+      QUEUE_DIR: /app/queue
+    volumes:
+      - ./queue:/app/queue
+    restart: unless-stopped
